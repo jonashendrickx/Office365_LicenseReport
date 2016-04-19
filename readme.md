@@ -12,6 +12,7 @@ This was initially made for a client who wanted a weekly report. To reduce time 
   * A [Microsoft Online Services Sign-In Assistant](https://www.microsoft.com/en-us/download/details.aspx?id=41950)
   * A [Windows Azure Active Directory Module for Windows Powershell](http://go.microsoft.com/fwlink/p/?linkid=236297)
   * Windows 8.1 or Windows Server 2012 R2 and older need to install A [Windows Management Framework 5.0](https://www.microsoft.com/en-us/download/details.aspx?id=50395)
+  * Have Microsoft Office 2013 or later installed.
 
 ### Settings
 
