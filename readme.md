@@ -60,4 +60,4 @@ Jonas Hendrickx
 
 ## License
 
-A short snippet describing the license (MIT, Apache, etc.)
+MIT License
