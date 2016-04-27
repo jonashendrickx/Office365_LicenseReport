@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Licenses>
+  <License>
+    <Name>Microsoft Dynamics CRM Online Professional</Name>
+    <SkuPartNumber>CRMSTANDARD</SkuPartNumber>
+  </License>
+  <License>
+    <Name>Exchange Online (Plan 1)</Name>
+    <SkuPartNumber>EXCHANGE_S_STANDARD</SkuPartNumber>
+  </License>
+  <License>
+    <Name>Mobile Device Management for Office 365</Name>
+    <SkuPartNumber>INTUNE_O365</SkuPartNumber>
+  </License>
+  <License>
+    <Name>Skype for Business Online ?(Plan 2)</Name>
+    <SkuPartNumber>MCOSTANDARD</SkuPartNumber>
+  </License>
+  <License>
+    <Name>Office 365 ProPlus</Name>
+    <SkuPartNumber>OFFICESUBSCRIPTION</SkuPartNumber>
+  </License>
+  <License>
+    <Name>OneDrive for Business (Plan 1)</Name>
+    <SkuPartNumber>ONEDRIVESTANDARD</SkuPartNumber>
+  </License>
+  <License>
+    <Name>Project Lite</Name>
+    <SkuPartNumber>PROJECTESSENTIALS</SkuPartNumber>
+  </License>
+  <License>
+    <Name>Project Online (Plan 1)</Name>
+    <SkuPartNumber>PROJECTONLINE_PLAN_1</SkuPartNumber>
+  </License>
+  <License>
+    <Name>Project Online (Plan 2)</Name>
+    <SkuPartNumber>PROJECTONLINE_PLAN_2</SkuPartNumber>
+  </License>
+  <License>
+    <Name>SharePoint Plan 2 for EDU</Name>
+    <SkuPartNumber>SHAREPOINTENTERPRISE_EDU</SkuPartNumber>
+  </License>
+  <License>
+    <Name>SharePoint Plan 1 for EDU</Name>
+    <SkuPartNumber>SHAREPOINTSTANDARD_EDU</SkuPartNumber>
+  </License>
+  <License>
+    <Name>Office Online for Education</Name>
+    <SkuPartNumber>SHAREPOINTWAC_EDU</SkuPartNumber>
+  </License>
+  <License>
+    <Name>Yammer for Academic</Name>
+    <SkuPartNumber>YAMMER_EDU</SkuPartNumber>
+  </License>
+</Licenses>

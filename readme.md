@@ -15,6 +15,8 @@ This was initially made for a client who wanted a weekly report. To reduce time 
 
 ### Settings
 
+#### Parameters
+
 Here is a list of parameter the script takes.
 
 | Parameter | Required | Default value | Example | Description |
@@ -22,19 +24,26 @@ Here is a list of parameter the script takes.
 | -O365Username   | Yes | / | you@example.onmicrosoft.com | Office 365 username, requires authorization to read licenses |
 | -O365Password | Yes | / | yourpassword | Office 365 password |
 | -FilePrefix | No | prefix | prefix | Prefix for the file generated. |
-| -FileOutDir | Yes | / | C:\path\to\file\out | Directory where the report file will be temporarily saved. |
+| -RunDir | Yes | / | C:\path\to\file\out | Directory where the report file will be saved. This is also the location of licenses_config.xml. |
 | -MailSender | Yes | / | you@example.com | E-mail the report file will be sent with.
 | -MailPassword | Yes | / | yourpassword | Password of the e-mail you'll be using to send the e-mail. |
 | -MailSmtpServer | Yes | smtp.office365.com | smtp.office365.com | SMTP server |
 | -MailSmtpPort | No | 587 | 587 | SMTP port |
 | -MailRecipients | Yes | / | person1@example.com, person2@example.com | Recipients |
 | -MailCc | No | / | someone@example.com | E-mails in CC |
+| -All | No | 0 | 1 | Use value '1' to retrieve all licenses, or leave default '0' to use licenses_config.xml. |
 
 **Example:**
-Powershell.exe -Command "& C:\path\to\script\Send-O365PsLicenseReport.ps1 -O365Username 'you@example.onmicrosoft.com' -O365Password 'yourpassword' -FilePrefix 'prefix' -FileOutDir 'C:\path\to\file\out' -MailSender 'you@example.com' -MailPassword 'yourpassword' -MailRecipients 'person1@example.com', 'person2@example.com' -MailCc 'carboncopy@example.com'"
+Powershell.exe -Command "& C:\path\to\script\Send-O365PsLicenseReport.ps1 -O365Username 'you@example.onmicrosoft.com' -O365Password 'yourpassword' -FilePrefix 'prefix' -RunDir 'C:\path\to\file\out' -MailSender 'you@example.com' -MailPassword 'yourpassword' -MailRecipients 'person1@example.com', 'person2@example.com' -MailCc 'carboncopy@example.com'"
 
 **Note:**
 The debugging settings section in the script can still be edited if desired.
+
+#### licenses_config.xml
+
+This is a XML file, add licenses you wish to include in the report by coping the SKU part number. See the example licenses_config.xml file in the repository.
+
+The licenses_config.xml file must be moved to the directory specified in the **'-RunDir'** parameter.
 
 ### Task Scheduler (optional)
 
@@ -49,7 +58,7 @@ Now let's schedule the script.
   7. In the **Triggers** tab, enter the desired trigger.
   8. In the **Actions** tab, make sure **Start a program** is selected in the **Action** combobox.
   9. Click the **Browse** button and select the Powershell executable: **C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe**
-  10. Then in the **Add arguments** text box enter: **-Command "& C:\path\to\script\Send-O365PsLicenseReport.ps1 -O365Username 'you@example.onmicrosoft.com' -O365Password 'yourpassword' -FilePrefix 'prefix' -FileOutDir 'C:\path\to\file\out' -MailSender 'you@example.com' -MailPassword 'yourpassword' -MailRecipients 'person1@example.com', 'person2@example.com' -MailCc 'carboncopy@example.com'"**
+  10. Then in the **Add arguments** text box enter: **-Command "& C:\path\to\script\Send-O365PsLicenseReport.ps1 -O365Username 'you@example.onmicrosoft.com' -O365Password 'yourpassword' -FilePrefix 'prefix' -RunDir 'C:\path\to\file\out' -MailSender 'you@example.com' -MailPassword 'yourpassword' -MailRecipients 'person1@example.com', 'person2@example.com' -MailCc 'carboncopy@example.com'"**
 
 ## Contributors
 
