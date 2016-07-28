@@ -57,6 +57,20 @@ function Get-LicenseName($SkuPartNumber)
     return $SkuPartNumber
 }
 
+function IsLicensed($User, $AccountSkuId)
+{
+    Write-Host Method: $AccountSkuId
+    ForEach ($UserLicense in $User.Licenses)
+    {
+        if ($UserLicense.AccountSkuId -eq $AccountSkuId)
+        {
+            Write-Host $User has license $AccountSkuId.
+            Return $true
+        }
+    }
+    Return $false
+}
+
 #Cleanup
 # $removeFilesFilter = $WorkingDirectory + '*.xlsx'
 # Remove-Item $removeFilesFilter
@@ -109,13 +123,20 @@ ForEach ($License in $Licenses)
     $HtmlLicenseDetails[$HtmlLicenseDetailsIndex] += '<tr><th>#</th><th>Login</th><th>Name</th></tr>'
 
     # Process all users
-    $Users = Get-MsolUser -all | where {$_.isLicensed -and $_.licenses[0].accountskuid.tostring() -eq $License.accountskuid}
-
+    # $Users = Get-MsolUser -all | where {$_.isLicensed -and $_.licenses[0].accountskuid.tostring() -eq $License.accountskuid}
+    $Users = Get-MsolUser -all | where {$_.isLicensed}
     $Index = 0
     ForEach ($User in $Users)
     {
-        $Index++
-        $HtmlLicenseDetails[$HtmlLicenseDetailsIndex] += '<tr><td>' + $Index + '</td><td>' + $User.UserPrincipalName + '</td><td>' + $User.DisplayName + '</td></tr>'
+        ForEach ($UserLicense in $User.Licenses)
+        {
+            if ($UserLicense.AccountSkuId -eq $License.AccountSkuId)
+            {
+                $Index++
+                $HtmlLicenseDetails[$HtmlLicenseDetailsIndex] += '<tr><td>' + $Index + '</td><td>' + $User.UserPrincipalName + '</td><td>' + $User.DisplayName + '</td></tr>'
+                Break
+            }
+        }
     }
 
     $HtmlLicenseDetails[$HtmlLicenseDetailsIndex] += '</table>'
@@ -137,4 +158,4 @@ Start-Sleep -s 5
 $MailSecurePassword = ConvertTo-SecureString -String $MailPassword -AsPlainText -Force
 $MailCredentials = New-Object System.Management.Automation.PSCredential ($MailSender, $MailSecurePassword)
 
-Send-MailMessage -To $MailRecipients -Cc $MailCc -Attachments $ReportFile -SmtpServer $MailSmtpServer -Credential $MailCredentials -UseSsl "Project Server - Office365 License Report" -Port $MailSmtpPort -Body "<p>Dear client,</p><p>This is an automatically generated message.<br/>Check the attachments for your generated weekly report.</p><p>Kind regards,</p><p><strong>ServiceDesk ProjectIn</strong><br/>servicedesk@projectin.be</p>" -From $MailSender -BodyAsHtml
+Send-MailMessage -To $MailRecipients -Cc $MailCc -Attachments $ReportFile -SmtpServer $MailSmtpServer -Credential $MailCredentials -UseSsl "Project Server - Office365 License Report" -Port $MailSmtpPort -Body "<p>Dear client,</p><p>This is an automatically generated message.<br/>Check the attachments for your generated weekly report.</p><p>Kind regards,</p><p><strong>Your bot</strong><br/>sender@example.com</p>" -From $MailSender -BodyAsHtml
