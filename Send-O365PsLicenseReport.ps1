@@ -57,20 +57,6 @@ function Get-LicenseName($SkuPartNumber)
     return $SkuPartNumber
 }
 
-function IsLicensed($User, $AccountSkuId)
-{
-    Write-Host Method: $AccountSkuId
-    ForEach ($UserLicense in $User.Licenses)
-    {
-        if ($UserLicense.AccountSkuId -eq $AccountSkuId)
-        {
-            Write-Host $User has license $AccountSkuId.
-            Return $true
-        }
-    }
-    Return $false
-}
-
 #Cleanup
 # $removeFilesFilter = $WorkingDirectory + '*.xlsx'
 # Remove-Item $removeFilesFilter
